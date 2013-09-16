@@ -17,3 +17,9 @@ where name = 'Smith';
 select pid, name, quantity
 from products
 where priceUSD  > 1.25;
+
+--Question 4
+
+select ordno, aid
+from orders;
+
