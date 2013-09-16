@@ -44,3 +44,9 @@ where city != 'New York'
 AND city != 'Newark'
 AND priceUSD <= 1.00;
 
+--Question 8
+
+select *
+from orders
+where mon = 'jan'
+OR mon = 'mar';
