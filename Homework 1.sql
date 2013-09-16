@@ -28,3 +28,10 @@ from orders;
 select name, city
 from customers
 where city != 'Dallas';
+
+--Question 6
+
+select name
+from agents
+where city = 'New York'
+OR city = 'Newark';
