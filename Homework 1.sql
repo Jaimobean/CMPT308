@@ -35,3 +35,12 @@ select name
 from agents
 where city = 'New York'
 OR city = 'Newark';
+
+--Question 7
+
+select *
+from products
+where city != 'New York'
+AND city != 'Newark'
+AND priceUSD <= 1.00;
+
