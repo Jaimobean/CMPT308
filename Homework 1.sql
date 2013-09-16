@@ -58,3 +58,8 @@ from orders
 where mon = 'feb'
 AND dollars < 100.00;
 
+--Question 10
+
+select *
+from orders
+where cid = 'c005';
