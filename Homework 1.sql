@@ -5,3 +5,9 @@
 
 select *
 from customers;
+
+--Question 2
+select name, city
+from agents
+where name = 'Smith';
+
