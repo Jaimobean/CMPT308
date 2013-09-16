@@ -50,3 +50,11 @@ select *
 from orders
 where mon = 'jan'
 OR mon = 'mar';
+
+--Question 9
+
+select *
+from orders
+where mon = 'feb'
+AND dollars < 100.00;
+
