@@ -7,7 +7,13 @@ select *
 from customers;
 
 --Question 2
+
 select name, city
 from agents
 where name = 'Smith';
 
+--Question 3
+
+select pid, name, quantity
+from products
+where priceUSD  > 1.25;
