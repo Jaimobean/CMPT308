@@ -23,3 +23,8 @@ where priceUSD  > 1.25;
 select ordno, aid
 from orders;
 
+--Question 5
+
+select name, city
+from customers
+where city != 'Dallas';
