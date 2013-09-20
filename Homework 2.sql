@@ -8,10 +8,10 @@
 select city
 from agents
 where aid in (select aid 
-			  from orders
-			  where cid = (select cid
-						   from customers
-						   where name = 'Basics'))
+	      from orders
+              where cid = (select cid
+			   from customers
+   			   where name = 'Basics'))
 						   
 
 --Question 2
@@ -21,10 +21,10 @@ where aid in (select aid
 select distinct pid
 from orders
 where aid in(select aid
-			 from orders
-			 where cid = (select cid
-						  from customers
-						  where city = 'Kyoto'))
+	     from orders
+	     where cid = (select cid
+			  from customers
+			  where city = 'Kyoto'))
 order by pid;
 
 --Question 3
