@@ -46,11 +46,11 @@ where cid not in(select cid
 select cid, name
 from customers
 where cid in(select cid
-	         from orders
-	         where pid in(select pid
-			      from products
-			      where name = 'comb'
-			      OR name = 'case'))
+	     from orders
+	     where pid in(select pid
+		          from products
+			  where name = 'comb'
+			  OR name = 'case'))
 order by cid;
 				  
 --Question 5
@@ -66,3 +66,16 @@ where cid in(select cid
 		         where name = 'Brown'))
 order by pid;
 								  
+--Question 6
+--Selects names and discounts of all customers who place orders through agents
+--in Dallas or Duluth
+
+select name, discount
+from customers
+where cid in(select cid
+	     from orders
+	     where aid in(select aid
+	     		  from agents
+	                  where city = 'Dallas'
+		          OR city = 'Duluth'))
+		          
