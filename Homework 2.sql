@@ -53,4 +53,16 @@ where cid in(select cid
 			      OR name = 'case'))
 order by cid;
 				  
-				  
+--Question 5
+--Selects the pids of products orderd by any customers who ever placed an
+--order through agent a03 ('Brown')
+
+select distinct pid
+from orders
+where cid in(select cid
+			 from orders
+	         where aid =(select aid
+						 from agents
+						 where name = 'Brown'))
+order by pid;
+								  
