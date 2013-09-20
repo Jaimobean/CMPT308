@@ -4,6 +4,7 @@
 
 --Question 1
 --Selects the cities of agents booking an order for customer c002 ('Basics')
+
 select city
 from agents
 where aid in (select aid 
@@ -11,3 +12,30 @@ where aid in (select aid
 			  where cid = (select cid
 						   from customers
 						   where name = 'Basics'))
+						   
+
+--Question 2
+--Selects pids of products ordered though any agent who makes at least one 
+--order for a customer in Kyoto
+
+select distinct pid
+from orders
+where aid in(select aid
+			 from orders
+			 where cid = (select cid
+						  from customers
+						  where city = 'Kyoto'))
+order by pid;
+
+--Question 3
+--Selects the cids and names of customers who never placed an order through 
+--a03 ('Brown')
+
+select cid, name
+from customers
+where cid not in(select cid
+	         from orders
+	         where aid = (select aid
+			      from agents
+			      where name = 'Brown'))
+				  
