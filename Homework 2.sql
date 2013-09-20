@@ -79,3 +79,33 @@ where cid in(select cid
 	                  where city = 'Dallas'
 		          OR city = 'Duluth'))
 		          
+--Question 7
+--Selects the customers who have the same discount as that of any customers
+--in Dallas or Kyoto
+
+select cid
+from customers
+where discount in(select discount
+		  from customers
+		  where cid in(select cid
+			       from customers
+		               where city = 'Dallas'
+			       OR city = 'Kyoto'))
+AND cid not in(select cid
+	       from customers
+	       where city = 'Dallas'
+	       OR city = 'Kyoto')
+order by cid;	
+	
+--Question 8
+--Selects the cids and names of customers who did not place an order any orders
+--through a03 ('Brown')
+
+select cid
+from customers
+where cid not in(select cid
+	         from orders
+	         where aid = (select aid
+			      from agents
+			      where name = 'Brown'))	
+		          
