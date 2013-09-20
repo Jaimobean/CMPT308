@@ -46,7 +46,6 @@ OR city = 'Newark';
 --Question 7
 --Selecs all data for products NOT in New York OR Newark that cost $1.00 (USD) or less
 
-
 select *
 from products
 where city != 'New York'
