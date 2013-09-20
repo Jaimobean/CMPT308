@@ -60,9 +60,9 @@ order by cid;
 select distinct pid
 from orders
 where cid in(select cid
-			 from orders
-	         where aid =(select aid
-						 from agents
-						 where name = 'Brown'))
+	     from orders
+	     where aid =(select aid
+			 from agents
+		         where name = 'Brown'))
 order by pid;
 								  
