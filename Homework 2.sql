@@ -98,7 +98,7 @@ AND cid not in(select cid
 order by cid;	
 	
 --Question 8
---Selects the cids and names of customers who did not place an order any orders
+--Selects the cids of customers who did not place an order any orders
 --through a03 ('Brown')
 
 select cid
