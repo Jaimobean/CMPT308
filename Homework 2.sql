@@ -38,4 +38,19 @@ where cid not in(select cid
 	         where aid = (select aid
 			      from agents
 			      where name = 'Brown'))
+				 
+--Question 4
+--Selects the cids and ames of customers who have ordered products p01 ('comb')
+--or p07 ('case')
+
+select cid, name
+from customers
+where cid in(select cid
+	         from orders
+	         where pid in(select pid
+			      from products
+			      where name = 'comb'
+			      OR name = 'case'))
+order by cid;
+				  
 				  
