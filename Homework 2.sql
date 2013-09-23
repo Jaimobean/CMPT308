@@ -3,15 +3,13 @@
 --Due 9/23
 
 --Question 1
---Selects the cities of agents booking an order for customer c002 ('Basics')
+--Selects the cities of agents booking an order for customer c002
 
 select city
 from agents
 where aid in (select aid 
 	      from orders
-              where cid = (select cid
-			   from customers
-   			   where name = 'Basics'))
+              where cid = 'c002')
 						   
 
 --Question 2
@@ -29,41 +27,46 @@ order by pid;
 
 --Question 3
 --Selects the cids and names of customers who never placed an order through 
---a03 ('Brown')
+--a03
 
 select cid, name
 from customers
 where cid not in(select cid
 	         from orders
-	         where aid = (select aid
-			      from agents
-			      where name = 'Brown'))
+	         where aid = 'a03')
 				 
 --Question 4
---Selects the cids and ames of customers who have ordered products p01 ('comb')
---and p07 ('case'). Returns nothing because nothing fits the criteria.
+--Selects the cids and ames of customers who have ordered products p01
+--and p07. 
 
 select cid, name
 from customers
-where cid in(select cid
-	     from orders
-	     where pid in(select pid
-		          from products
-			  where name = 'comb'
-			  AND name = 'case'))
+where cid in
+	(select cid
+	from orders
+	where pid in
+		(select pid
+		from products
+		where pid = 'p01'))
+and cid in
+	(select cid
+	from orders
+	where pid in
+		(select pid
+		from products
+		where pid = 'p07'))
+
 order by cid;
 				  
 --Question 5
 --Selects the pids of products orderd by any customers who ever placed an
---order through agent a03 ('Brown')
+--order through agent a03
 
 select distinct pid
 from orders
 where cid in(select cid
 	     from orders
-	     where aid =(select aid
-			 from agents
-		         where name = 'Brown'))
+	     where aid = 'a03')
 order by pid;
 								  
 --Question 6
@@ -83,7 +86,7 @@ where cid in(select cid
 --Selects the customers who have the same discount as that of any customers
 --in Dallas or Kyoto
 
-select cid
+select cid, name
 from customers
 where discount in(select discount
 		  from customers
@@ -96,16 +99,4 @@ AND cid not in(select cid
 	       where city = 'Dallas'
 	       OR city = 'Kyoto')
 order by cid;	
-	
---Question 8
---Selects the cids of customers who did not place an order any orders
---through a03 ('Brown')
-
-select cid
-from customers
-where cid not in(select cid
-	         from orders
-	         where aid = (select aid
-			      from agents
-			      where name = 'Brown'))	
 		          
