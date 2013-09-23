@@ -41,7 +41,7 @@ where cid not in(select cid
 				 
 --Question 4
 --Selects the cids and ames of customers who have ordered products p01 ('comb')
---or p07 ('case')
+--and p07 ('case'). Returns nothing because nothing fits the criteria.
 
 select cid, name
 from customers
@@ -50,7 +50,7 @@ where cid in(select cid
 	     where pid in(select pid
 		          from products
 			  where name = 'comb'
-			  OR name = 'case'))
+			  AND name = 'case'))
 order by cid;
 				  
 --Question 5
