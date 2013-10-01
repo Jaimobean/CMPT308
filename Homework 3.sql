@@ -40,5 +40,19 @@ order by pid;
 --Selects pids of products ordered though any agent who makes at least one 
 --order for a customer in Kyoto (joins)
 
+select distinct o1.pid
+from orders o1,
+     orders o2,
+     customers c
+where o1.aid = o2.aid
+  and o2.cid = c.cid
+  and c.city = 'Kyoto'
 
-
+order by o1.pid;
+  
+--Question 5
+--Selects the names of customers who have never placed an order (subqueries)
+select name
+from customers
+where cid not in (select cid
+		          from orders)
