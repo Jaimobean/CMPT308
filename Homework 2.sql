@@ -11,7 +11,6 @@ where aid in (select aid
 	      from orders
               where cid = 'c002')
 
-
 --Question 2
 --Selects pids of products ordered though any agent who makes at least one 
 --order for a customer in Kyoto
@@ -98,4 +97,6 @@ AND cid not in(select cid
 	       from customers
 	       where city = 'Dallas'
 	       OR city = 'Kyoto')
+
 order by cid;
+
