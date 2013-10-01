@@ -56,3 +56,18 @@ select name
 from customers
 where cid not in (select cid
 		          from orders)
+
+--Question 6				  
+--Selects the names of customers who have never placed an order (joins)
+select c.name
+from customers c full outer join orders o
+on c.cid = o.cid
+where o.cid is null
+
+--Question 7
+--Selects the name of customers who have placed at least one order through 
+--an agent in their city along with those agent names
+select c.name
+from customers c full outer join orders o
+on c.cid = o.cid
+where o.cid is null
