@@ -71,3 +71,16 @@ select c.name
 from customers c full outer join orders o
 on c.cid = o.cid
 where o.cid is null
+
+--Question 8
+--Selects the names of customers and agents in the same city, along with the
+--name of the city, regardless of whether or not the customer has ever placed
+--an order with that agent
+
+select c.name, a.name, a.city
+from customers c,
+	 agents a
+where c.city = a.city
+order by c.cid
+
+
