@@ -99,3 +99,16 @@ group by name
 having avg(priceUSD) > (select avg(priceUSD)
 						from products)
 
+--Question 13
+--Selects the customer name, pid ordered, and the dollars for all customer
+--orders, sorted by dollars from high to low
+
+select c.name,
+       o.pid,
+       o.dollars
+from orders o,
+     customers c
+where c.cid = o.cid
+order by dollars desc
+  
+
