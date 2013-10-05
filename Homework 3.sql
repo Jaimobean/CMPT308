@@ -83,4 +83,19 @@ from customers c,
 where c.city = a.city
 order by c.cid
 
+--Question 9
+--Selects the name and city of customers who live in THE city where the LEAST
+--number of products are made
+
+
+
+--Question 12
+--Selects the products whose priceUSD is above the average priceUSD
+
+select name,
+       avg(priceUSD)
+from products
+group by name
+having avg(priceUSD) > (select avg(priceUSD)
+						from products)
 
