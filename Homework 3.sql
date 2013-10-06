@@ -67,10 +67,14 @@ where o.cid is null
 --Question 7
 --Selects the name of customers who have placed at least one order through 
 --an agent in their city along with those agent names
-select c.name
-from customers c full outer join orders o
-on c.cid = o.cid
-where o.cid is null
+select distinct c.name,
+		a.name
+from customers c,
+     orders o,
+     agents a
+where c.cid = o.cid
+  and o.aid = a.aid
+  and c.city = a.city
 
 --Question 8
 --Selects the names of customers and agents in the same city, along with the
