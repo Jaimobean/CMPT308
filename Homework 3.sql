@@ -8,7 +8,7 @@
 select city
 from agents
 where aid in (select aid 
-	      from orders
+			  from orders
               where cid = 'c002')
 			  
 --Question 2
@@ -30,10 +30,10 @@ where o.aid = a.aid
 select distinct pid
 from orders
 where aid in(select aid
-	     from orders
-	     where cid = (select cid
-			  from customers
-			  where city = 'Kyoto'))
+	         from orders
+	         where cid = (select cid
+			              from customers
+			              where city = 'Kyoto'))
 order by pid;
 
 --Question 4
@@ -68,7 +68,7 @@ where o.cid is null
 --Selects the name of customers who have placed at least one order through 
 --an agent in their city along with those agent names
 select distinct c.name,
-		a.name
+		        a.name
 from customers c,
      orders o,
      agents a
