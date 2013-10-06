@@ -88,7 +88,6 @@ order by c.cid
 --number of products are made
 
 
-
 --Question 12
 --Selects the products whose priceUSD is above the average priceUSD
 
@@ -111,4 +110,26 @@ from orders o,
 where c.cid = o.cid
 order by dollars desc
   
+--Question 14
+--Selects the customer names (in order) and their total order, and nothing more.
+
+--Question 15
+--Selects the names of all customers who bought products from agents based in
+--New York along with the names of the products they ordered, and the names
+--of the agents who sold it to them
+
+select c.name,
+       a.name,
+       p.name
+from customers c,
+     orders o,
+     agents a,
+     products p
+where c.cid = o.cid
+  and o.aid = a.aid
+  and o.pid = p.pid
+  and a.city = 'New York'
+  
+  
+
 
