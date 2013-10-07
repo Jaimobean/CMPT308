@@ -91,6 +91,34 @@ order by c.cid
 --Selects the name and city of customers who live in THE city where the LEAST
 --number of products are made
 
+select name, city
+from customers
+where city =(select city
+	         from products p
+             group by p.city
+	         having count(name) = (select count (name)
+                                   from products
+		                           where city = 'Duluth'))
+								   
+--Question 10
+--Selects the name and city of customers who live is A city where the MOST
+--number of products are made
+
+select name, city
+from customers
+where city in (select city
+	           from products p
+               group by p.city
+	           having count(name) = (select count (name)
+                                     from products
+		                             where city = 'Dallas'))
+
+--Question 11
+--Selects the name and city of customers who live in ANY city where the MOST
+--number of products are made
+
+
+
 
 --Question 12
 --Selects the products whose priceUSD is above the average priceUSD
