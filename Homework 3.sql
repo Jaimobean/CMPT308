@@ -121,10 +121,10 @@ select name, city
 from customers
 where city in (select city
 	     from products p
-             group by p.city
+         group by p.city
 	     having count(name) = (select count (name)
-                                   from products
-		                   where city = 'Dallas'))
+                               from products
+		                       where city = 'Dallas'))
 
 --Question 12
 --Selects the products whose priceUSD is above the average priceUSD
