@@ -91,27 +91,25 @@ order by c.cid
 --Selects the name and city of customers who live in THE city where the LEAST
 --number of products are made
 
-select name, city
-from customers
-where city =(select city
-	         from products p
-             group by p.city
-	         having count(name) = (select count (name)
-                                   from products
-		                           where city = 'Duluth'))
+select c.name, c.city
+from customers c,
+     products p
+where c.city = p.city
+group by c.name, p.city, c.city
+order by count(p.city)
+limit 2
 								   
 --Question 10
 --Selects the name and city of customers who live is A city where the MOST
 --number of products are made
 
-select name, city
-from customers
-where city in (select city
-	           from products p
-               group by p.city
-	           having count(name) = (select count (name)
-                                     from products
-		                             where city = 'Dallas'))
+select c.name, c.city
+from customers c,
+     products p
+where c.city = p.city
+group by c.name, p.city, c.city
+order by count(p.city)desc
+limit 2
 
 --Question 11
 --Selects the name and city of customers who live in ANY city where the MOST
@@ -179,7 +177,7 @@ where c.cid = o.cid
 --by calculating orders.dollars from other data in other tables and then
 --comparing those values to orders.dollars
 
-select o.qty * p.priceUSD * (1 - c.discount/100), o.dollars
+select o.qty * p.priceUSD * (1 - c.discount/100) as "Calculated Total", o.dollars
 from orders o,
      products p,
      customers c
