@@ -90,7 +90,16 @@ order by c.cid
 --Question 9
 --Selects the name and city of customers who live in THE city where the LEAST
 --number of products are made
-
+--There is no result because the 
+select c.name, c.city
+from customers c,
+     products p1,
+     products p2
+where p1.pid = p2.pid
+  and p2.city = c.city
+group by c.cid, p1.pid, p2.pid
+having p1.quantity = (select min(quantity)
+		              from products)
 
 --Question 12
 --Selects the products whose priceUSD is above the average priceUSD
@@ -134,6 +143,24 @@ where c.cid = o.cid
   and o.pid = p.pid
   and a.city = 'New York'
   
-  
+--Question 16
+--A query that checks the accuracy of the dollars column in the orders table
+--by calculating orders.dollars from other data in other tables and then
+--comparing those values to orders.dollars
+
+select o.qty * p.priceUSD * (1 - c.discount/100), o.dollars
+from orders o,
+     products p,
+     customers c
+where o.pid = p.pid
+  and c.cid = o.cid
+
+--Question 17
+--Create an error in the dollars column of the Orders tables so that you can 
+--verify the accuracy checking query
+--This is the insert line that I changed.
+
+INSERT INTO Orders( ordno, mon, cid, aid, pid, qty, dollars )
+  VALUES(1011, 'jan', 'c001', 'a01', 'p01', 1000, 3.00);
 
 
