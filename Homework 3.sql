@@ -151,12 +151,11 @@ order by dollars desc
 --Question 14
 --Selects the customer names (in order) and their total ordered, and nothing more.
 
-select c.name, sum(o.dollars)
-from orders o,
-     customers c
-where c.cid = o.cid
-group by o.cid, c.name
-order by o.cid
+select c.name, coalesce(sum(o.dollars), 0.00)
+from customers c left outer join orders o
+on c.cid = o.cid
+group by c.name, c.cid
+order by c.cid
 
 --Question 15
 --Selects the names of all customers who bought products from agents based in
