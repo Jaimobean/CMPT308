@@ -115,14 +115,13 @@ limit 2
 --Selects the name and city of customers who live in ANY city where the MOST
 --number of products are made
 
-select name, city
-from customers
-where city in (select city
-	     from products p
-         group by p.city
-	     having count(name) = (select count (name)
-                               from products
-		                       where city = 'Dallas'))
+select c.name, c.city
+from customers c,
+     products p
+where c.city = p.city
+group by c.name, p.city, c.city
+order by count(p.city)desc
+limit 2
 
 --Question 12
 --Selects the products whose priceUSD is above the average priceUSD
