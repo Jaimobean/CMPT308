@@ -90,16 +90,7 @@ order by c.cid
 --Question 9
 --Selects the name and city of customers who live in THE city where the LEAST
 --number of products are made
---There is no result because the 
-select c.name, c.city
-from customers c,
-     products p1,
-     products p2
-where p1.pid = p2.pid
-  and p2.city = c.city
-group by c.cid, p1.pid, p2.pid
-having p1.quantity = (select min(quantity)
-		              from products)
+
 
 --Question 12
 --Selects the products whose priceUSD is above the average priceUSD
@@ -124,7 +115,14 @@ where c.cid = o.cid
 order by dollars desc
   
 --Question 14
---Selects the customer names (in order) and their total order, and nothing more.
+--Selects the customer names (in order) and their total ordered, and nothing more.
+
+select c.name, sum(o.dollars)
+from orders o,
+     customers c
+where c.cid = o.cid
+group by o.cid, c.name
+order by o.cid
 
 --Question 15
 --Selects the names of all customers who bought products from agents based in
